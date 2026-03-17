@@ -1,0 +1,262 @@
+<html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cash Drop GT</title>
+
+<style>
+
+body{
+background:#181818;
+color:#f5f5f5;
+font-family:Arial, Helvetica, sans-serif;
+margin:0;
+}
+
+/* NAV */
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 10%;
+background:#111;
+border-bottom:1px solid #333;
+}
+
+nav a{
+color:#e0e0e0;
+text-decoration:none;
+margin-left:25px;
+}
+
+nav a:hover{
+color:white;
+}
+
+/* HERO */
+
+.hero{
+display:flex;
+flex-direction:column;
+align-items:center;
+padding:60px;
+}
+
+/* GALERIA */
+
+.galeria{
+display:flex;
+gap:30px;
+margin-bottom:40px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.galeria img{
+width:250px;
+border-radius:12px;
+background:#222;
+padding:10px;
+}
+
+/* TEXTO */
+
+.hero-text{
+max-width:500px;
+text-align:center;
+}
+
+.hero-text h1{
+font-size:36px;
+}
+
+.hero-text p{
+color:#cfcfcf;
+}
+
+.precio{
+font-size:28px;
+margin-top:10px;
+}
+
+.precio-descuento{
+color:#4caf50;
+font-weight:bold;
+}
+
+.timer{
+margin-top:10px;
+color:#ffcc00;
+font-size:18px;
+}
+
+/* BOTON */
+
+button{
+background:#e6e6e6;
+color:#111;
+border:none;
+padding:12px 30px;
+border-radius:30px;
+cursor:pointer;
+font-weight:bold;
+font-size:15px;
+margin-top:15px;
+}
+
+button:hover{
+background:white;
+}
+
+/* POPUP */
+
+.popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.85);
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.popup-content{
+background:#222;
+padding:40px;
+border-radius:15px;
+text-align:center;
+max-width:350px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- POPUP PROMOCION -->
+
+<div class="popup" id="popup">
+
+<div class="popup-content">
+
+<h2>🎉 Promoción especial</h2>
+
+<p>
+Obtén <b>Q50 de descuento</b> en tus AirPods Pro 2.  
+Esta oferta dura solo <b>1 hora</b>.
+</p>
+
+<button onclick="cerrarPopup()">Aprovechar oferta</button>
+
+</div>
+
+</div>
+
+
+<nav>
+
+<img src="log1.jpg" height="40">
+
+<div>
+
+<a href="caracteristicas.html">Características</a>
+<a href="ordenar.html">Ordenar</a>
+</div>
+
+</nav>
+
+
+<section class="hero">
+
+<div class="galeria">
+
+<img src="im1.jpg">
+<img src="im2.jpg">
+<img src="im3.jpg">
+
+</div>
+
+
+<div class="hero-text">
+
+<h1>AirPods Pro 2</h1>
+
+<p>
+Cancelación activa de ruido, audio espacial y calidad premium.
+</p>
+
+<div class="precio">
+
+<span id="precioNormal">Q500.00</span><br>
+
+<span id="precioDescuento" class="precio-descuento">
+Q450.00 con descuento
+</span>
+
+</div>
+
+<div class="timer">
+⏳ Oferta termina en: <span id="contador"></span>
+</div>
+
+<a href="ordenar.html">
+<button>Comprar ahora</button>
+</a>
+
+</div>
+
+</section>
+
+
+<script>
+
+/* CERRAR POPUP */
+
+function cerrarPopup(){
+document.getElementById("popup").style.display="none";
+}
+
+
+/* TEMPORIZADOR DE 1 HORA */
+
+let tiempo = localStorage.getItem("tiempoOferta");
+
+if(!tiempo){
+tiempo = new Date().getTime() + 3600000;
+localStorage.setItem("tiempoOferta", tiempo);
+}
+
+function actualizarContador(){
+
+let ahora = new Date().getTime();
+let restante = tiempo - ahora;
+
+if(restante <= 0){
+
+document.getElementById("contador").innerHTML = "OFERTA TERMINADA";
+document.getElementById("precioDescuento").style.display="none";
+
+return;
+
+}
+
+let minutos = Math.floor(restante / 60000);
+let segundos = Math.floor((restante % 60000) / 1000);
+
+document.getElementById("contador").innerHTML =
+minutos + "m " + segundos + "s";
+
+}
+
+setInterval(actualizarContador,1000);
+
+</script>
+
+</body>
+</html>
+
