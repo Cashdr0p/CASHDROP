@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta name="google-site-verification: google5fb7522e4d67332b.html">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cash Drop GT</title>
@@ -132,6 +131,22 @@ padding:40px;
 border-radius:15px;
 text-align:center;
 max-width:350px;
+position:relative;
+}
+
+/* NUEVO: BOTON X */
+
+.cerrar{
+position:absolute;
+top:10px;
+right:15px;
+font-size:25px;
+cursor:pointer;
+color:#aaa;
+}
+
+.cerrar:hover{
+color:white;
 }
 
 </style>
@@ -144,6 +159,8 @@ max-width:350px;
 <div class="popup" id="popup">
 
 <div class="popup-content">
+
+<span class="cerrar" onclick="cerrarPopup()">×</span>
 
 <h2>🎉 Promoción especial</h2>
 
@@ -260,4 +277,3 @@ setInterval(actualizarContador,1000);
 
 </body>
 </html>
-
